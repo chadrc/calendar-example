@@ -2,6 +2,36 @@ import React from 'react';
 
 const Today = new Date();
 
+const MonthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+];
+
+const ShortMonthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "June",
+    "July",
+    "Aug",
+    "Sept",
+    "Oct",
+    "Nov",
+    "Dec"
+];
+
 function genMonth(year, month) {
     let daysInMonth = [];
     let firstOfMonth = new Date(year, month, 1);
@@ -104,13 +134,15 @@ class CalendarComponent extends React.Component {
             <section>
                 <h2>{Today.toDateString()}</h2>
                 <h3>
-                    Current Year: {currentMonth.getFullYear()}
-                    <button type="button" onClick={() => this.previousYear()}>-</button>
-                    <button type="button" onClick={() => this.nextYear()}>+</button>
+                    <button type="button" onClick={() => this.previousYear()}>&lt;</button>
+                    {currentMonth.getFullYear()}
+                    <button type="button" onClick={() => this.nextYear()}>&gt;</button>
                 </h3>
-                <h4>Current Month: {currentMonth.getMonth() + 1}</h4>
-                <button type="button" onClick={() => this.previousMonth()}>Previous</button>
-                <button type="button" onClick={() => this.nextMonth()}>Next</button>
+                <h4>
+                    <button type="button" onClick={() => this.previousMonth()}>&lt;</button>
+                    {MonthNames[currentMonth.getMonth()]}
+                    <button type="button" onClick={() => this.nextMonth()}>&gt;</button>
+                </h4>
                 <table>
                     <thead>
                         <tr>
