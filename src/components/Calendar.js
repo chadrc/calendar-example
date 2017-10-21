@@ -1,84 +1,6 @@
 import React from 'react';
 
-const Today = new Date();
-
-const MonthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-];
-
-const ShortMonthNames = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "July",
-    "Aug",
-    "Sept",
-    "Oct",
-    "Nov",
-    "Dec"
-];
-
-function genMonth(year, month) {
-    let daysInMonth = [];
-    let firstOfMonth = new Date(year, month, 1);
-    daysInMonth.push(firstOfMonth);
-    let nextDay = firstOfMonth;
-    while (true) {
-        nextDay = new Date(year, month, nextDay.getDate() + 1);
-        if (nextDay.getMonth() !== month) {
-            break;
-        }
-        daysInMonth.push(nextDay);
-    }
-    return daysInMonth;
-}
-
-function genYear(year) {
-    let monthsInYear = [];
-    for (let i=0; i<12; i++) {
-        monthsInYear.push(genMonth(year, i));
-    }
-    return monthsInYear;
-}
-
-function genWeekForDay(year, month, day) {
-    let theDay = new Date(year, month, day);
-    let days = [];
-    let startOfWeek = theDay.getDate() - theDay.getDay();
-    for (let i=0; i<7; i++) {
-        days.push(new Date(year, month, startOfWeek + i));
-    }
-    return days;
-}
-
-function genWeeksForMonth(year, month) {
-    let firstOfMonth = new Date(year, month, 1);
-    let weeks = [];
-    let firstOfWeek =  new Date(year, month, firstOfMonth.getDate() - firstOfMonth.getDay());
-    weeks.push(genWeekForDay(firstOfWeek.getFullYear(), firstOfWeek.getMonth(), firstOfWeek.getDate()));
-    while (true) {
-        firstOfWeek = new Date(firstOfWeek.getFullYear(), firstOfWeek.getMonth(), firstOfWeek.getDate() + 7);
-        if (firstOfWeek.getMonth() !== month) {
-            break;
-        }
-        weeks.push(genWeekForDay(year, month, firstOfWeek.getDate()));
-    }
-    return weeks;
-}
+import {Today, genWeeksForMonth, MonthNames} from "../utils/index";
 
 class CalendarComponent extends React.Component {
     constructor(props) {
@@ -145,6 +67,7 @@ class CalendarComponent extends React.Component {
                 <table>
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Sunday</th>
                             <th>Monday</th>
                             <th>Tuesday</th>
@@ -158,9 +81,10 @@ class CalendarComponent extends React.Component {
                     {weeks.map((item, index) => {
                         return (
                             <tr key={index}>
+                                <td>{index + 1}</td>
                                 {item.map((item) => {
                                     return (
-                                        <td key={item.toDateString()}>{item.getDate()}</td>
+                                        <td className="day" key={item.toDateString()}>{item.getDate()}</td>
                                     )
                                 })}
                             </tr>

@@ -3,3 +3,12 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.day {
+  text-align: center;
+  cursor: default;
+}
+
+.day:hover {
+  background: #EEEEEE;
+}
