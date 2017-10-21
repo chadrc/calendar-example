@@ -132,7 +132,6 @@ class CalendarComponent extends React.Component {
         let weeks = genWeeksForMonth(this.state.currentYear, this.state.currentMonth);
         return (
             <section>
-                <h2>{Today.toDateString()}</h2>
                 <h3>
                     <button type="button" onClick={() => this.previousYear()}>&lt;</button>
                     {currentMonth.getFullYear()}
