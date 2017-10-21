@@ -1,8 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 
 import {Today, genWeeksForMonth, MonthNames} from "../utils/index";
 
-class CalendarComponent extends React.Component {
+class MonthCalendar extends React.Component {
+    static propTypes = {
+        onDaySelected: PropTypes.func
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -49,6 +54,13 @@ class CalendarComponent extends React.Component {
         })
     }
 
+    daySelected(day) {
+        console.log('day selected', day);
+        if (this.props.onDaySelected) {
+            this.props.onDaySelected(day);
+        }
+    }
+
     render() {
         let currentMonth = new Date(this.state.currentYear, this.state.currentMonth);
         let weeks = genWeeksForMonth(this.state.currentYear, this.state.currentMonth);
@@ -78,13 +90,17 @@ class CalendarComponent extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                    {weeks.map((item, index) => {
+                    {weeks.map((week, index) => {
                         return (
                             <tr key={index}>
                                 <td>{index + 1}</td>
-                                {item.map((item) => {
+                                {week.map((day) => {
                                     return (
-                                        <td className="day" key={item.toDateString()}>{item.getDate()}</td>
+                                        <td className="day"
+                                            onClick={() => this.daySelected(day)}
+                                            key={day.toDateString()}>
+                                            {day.getDate()}
+                                        </td>
                                     )
                                 })}
                             </tr>
@@ -97,4 +113,4 @@ class CalendarComponent extends React.Component {
     }
 }
 
-export default CalendarComponent;
+export default MonthCalendar;

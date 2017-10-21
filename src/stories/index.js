@@ -1,15 +1,10 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
-import Main from "../components/Main";
-import Calendar from '../components/Calendar';
-
-storiesOf('Main', module)
-    .add('Basic', () => (
-        <Main />
-    ));
+import {action} from '@storybook/addon-actions';
+import MonthCalendar from '../components/MonthCalendar';
 
 storiesOf('Calendar', module)
-    .add('Basic', () => (
-        <Calendar/>
+    .add('Month', () => (
+        <MonthCalendar onDaySelected={action('day selected')} />
     ));
