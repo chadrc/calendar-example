@@ -40,6 +40,10 @@ export function genWeekForDay(year, month, day) {
     return days;
 }
 
+export function genWeekForToday() {
+    return genWeekForDay(Today.getFullYear(), Today.getMonth(), Today.getDate());
+}
+
 export function genWeeksForMonth(year, month) {
     let firstOfMonth = new Date(year, month, 1);
     let weeks = [];
