@@ -58,3 +58,11 @@ export function genWeeksForMonth(year, month) {
     }
     return weeks;
 }
+
+export function genWeeksForYear(year) {
+    let months = [];
+    for (let i=0; i<12; i++) {
+        months.push(genWeeksForMonth(year, i));
+    }
+    return months;
+}

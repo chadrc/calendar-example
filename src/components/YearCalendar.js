@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
-import {Today, genWeeksForMonth, MonthNames} from "../utils";
+import {Today, genWeeksForYear, MonthNames} from "../utils";
 
 class YearCalendar extends React.Component {
     static propTypes = {
@@ -10,14 +10,9 @@ class YearCalendar extends React.Component {
 
     constructor(props) {
         super(props);
-        let currentYear = Today.getFullYear();
-        let months = [];
-        for (let i=0; i<12; i++) {
-            months.push(genWeeksForMonth(currentYear, i));
-        }
         this.state = {
-            currentYear: currentYear,
-            months: months
+            currentYear: Today.getFullYear(),
+            months: genWeeksForYear(Today.getFullYear())
         }
     }
 
@@ -27,10 +22,29 @@ class YearCalendar extends React.Component {
         }
     }
 
+    previousYear() {
+        this.setWeeks(this.state.currentYear - 1);
+    }
+
+    nextYear() {
+        this.setWeeks(this.state.currentYear + 1);
+    }
+
+    setWeeks(year) {
+        this.setState({
+            currentYear: year,
+            months: genWeeksForYear(year)
+        });
+    }
+
     render() {
         return (
             <section className="year-calendar">
-                <h2>{this.state.currentYear}</h2>
+                <h2>
+                    <button type="button" onClick={() => this.previousYear()}>&lt;</button>
+                    {this.state.currentYear}
+                    <button type="button" onClick={() => this.nextYear()}>&gt;</button>
+                </h2>
                 {this.state.months.map((month, index) => {
                     return (
                         <div className="month" key={MonthNames[index]}>
