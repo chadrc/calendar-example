@@ -32,6 +32,12 @@ class WeekCalendar extends React.Component {
         });
     }
 
+    onDaySelected(day) {
+        if (this.props.onDaySelected) {
+            this.props.onDaySelected(day);
+        }
+    }
+
     render() {
         let currentMonthYears = [];
         for (let day of this.state.currentWeek) {
@@ -69,7 +75,9 @@ class WeekCalendar extends React.Component {
                         <tr>
                             {this.state.currentWeek.map((day) => {
                                 return (
-                                    <td key={day.toDateString()}>
+                                    <td className="day"
+                                        onClick={() => this.onDaySelected(day)}
+                                        key={day.toDateString()}>
                                         {day.getDate()}
                                     </td>
                                 )
