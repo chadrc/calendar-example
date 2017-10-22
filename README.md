@@ -1,4 +1,4 @@
-#Simple calendar implementation in React
+# Simple calendar implementation in React
 
 Start demo with
 ```bash
