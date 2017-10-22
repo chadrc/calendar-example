@@ -4,7 +4,10 @@ body {
   font-family: sans-serif;
 }
 
-.year-calendar>h2 {
+.year-calendar>h2,
+.month>h4,
+.month-calendar,
+.week-calendar {
   text-align: center;
 }
 
@@ -13,11 +16,9 @@ body {
   width: 25%;
 }
 
-.month>h4 {
-  text-align: center;
-}
-
-.month>table {
+.month>table,
+.month-calendar>table,
+.week-calendar>table {
   margin: auto;
 }
 

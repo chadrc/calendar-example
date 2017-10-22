@@ -65,17 +65,17 @@ class MonthCalendar extends React.Component {
         let currentMonth = new Date(this.state.currentYear, this.state.currentMonth);
         let weeks = genWeeksForMonth(this.state.currentYear, this.state.currentMonth);
         return (
-            <section>
-                <h3>
+            <section className="month-calendar">
+                <h2>
                     <button type="button" onClick={() => this.previousYear()}>&lt;</button>
                     {currentMonth.getFullYear()}
                     <button type="button" onClick={() => this.nextYear()}>&gt;</button>
-                </h3>
-                <h4>
+                </h2>
+                <h2>
                     <button type="button" onClick={() => this.previousMonth()}>&lt;</button>
                     {MonthNames[currentMonth.getMonth()]}
                     <button type="button" onClick={() => this.nextMonth()}>&gt;</button>
-                </h4>
+                </h2>
                 <table>
                     <thead>
                         <tr>

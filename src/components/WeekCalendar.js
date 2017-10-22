@@ -49,7 +49,7 @@ class WeekCalendar extends React.Component {
             }
         }
         return (
-            <section>
+            <section className="week-calendar">
                 <h2>
                     {currentMonthYears.length === 1 ?
                         `${MonthNames[currentMonthYears[0].month]} ${currentMonthYears[0].year}`
