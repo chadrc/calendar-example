@@ -79,7 +79,6 @@ class MonthCalendar extends React.Component {
                 <table>
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th>Sunday</th>
                             <th>Monday</th>
                             <th>Tuesday</th>
@@ -93,7 +92,6 @@ class MonthCalendar extends React.Component {
                     {weeks.map((week, index) => {
                         return (
                             <tr key={index}>
-                                <td>{index + 1}</td>
                                 {week.map((day) => {
                                     return (
                                         <td className="day"
