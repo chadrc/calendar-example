@@ -4,6 +4,23 @@ body {
   font-family: sans-serif;
 }
 
+.year-calendar>h2 {
+  text-align: center;
+}
+
+.month {
+  display: inline-block;
+  width: 25%;
+}
+
+.month>h4 {
+  text-align: center;
+}
+
+.month>table {
+  margin: auto;
+}
+
 .day {
   text-align: center;
   cursor: default;
